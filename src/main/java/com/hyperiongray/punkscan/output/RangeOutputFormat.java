@@ -1,0 +1,106 @@
+package com.hyperiongray.punkscan.output;
+
+import java.io.IOException;
+
+import org.apache.hadoop.conf.Configuration;
+import org.apache.hadoop.fs.Path;
+import org.apache.hadoop.mapreduce.OutputCommitter;
+import org.apache.hadoop.mapreduce.RecordWriter;
+import org.apache.hadoop.mapreduce.TaskAttemptContext;
+import org.apache.hadoop.mapreduce.lib.output.FileOutputCommitter;
+import org.apache.hadoop.mapreduce.lib.output.TextOutputFormat;
+
+public class RangeOutputFormat<K, V> extends TextOutputFormat<K, V> {
+
+	/** Output committer */
+    protected FileOutputCommitter committer;
+
+    /** Flag to track whether anything was output */
+    protected boolean outputWritten = false;
+
+    
+	@Override
+	public RecordWriter<K, V> getRecordWriter(TaskAttemptContext job) throws IOException, InterruptedException {
+
+		final RecordWriter<K, V> recWriter = super.getRecordWriter(job);
+        
+        // wrap writer to track that something was output
+        return new RecordWriter<K, V>() {
+            @Override
+            public void write(K key, V value) throws IOException,
+                    InterruptedException {
+//                outputWritten = true;
+              outputWritten = false; //--> set to false to avoid saving results!
+                recWriter.write(key, value);
+//                RangeOutputFormat.getFoundedPasswordPath(job);
+//                job.getConfiguration().g
+            }
+ 
+            @Override
+            public void close(TaskAttemptContext context) throws IOException,
+                    InterruptedException {
+                recWriter.close(context);
+            }
+        };
+	}
+
+    /**
+     * Implementation copied from the parent but amended to override the
+     * {@link OutputCommitter#needsTaskCommit(TaskAttemptContext)} method
+     */
+    @Override
+    public synchronized OutputCommitter getOutputCommitter(
+            TaskAttemptContext context) throws IOException {
+        // annoyingly committer is private in the parent class
+        if (committer == null) {
+ 
+           	Path output = getOutputPath(context);
+            committer = new FileOutputCommitter(output, context) {
+                @Override
+                public boolean needsTaskCommit(TaskAttemptContext context)
+                        throws IOException {
+                    return outputWritten && super.needsTaskCommit(context);
+                }
+            };
+        }
+        return committer;
+    }
+
+	public static Path getFoundedPasswordPath(TaskAttemptContext context){
+		Configuration conf = context.getConfiguration();
+		String foundedPasswordFilename = conf.get("punkcracker.password.founded.filename");
+		String outputFolder = conf.get("mapred.output.dir");
+		Path file = new Path(outputFolder,foundedPasswordFilename);
+		return file;
+	}
+
+
+//    private void outputCommiterToNewFile(){
+    	
+    	
+    	
+    	/*
+    	
+    	
+    	1) Define a folder file name --> passsword
+    	2) Save to it when pwd gets matched
+    	3) ask for it when the input split starts, if pwd exists, then skip them
+    	
+    	4) in multihash escenario, keep generatiog the im 
+    	
+    	public static final String HDFS_STOPWORD_LIST = "/data/stop_words.txt";
+
+    	  void cacheStopWordList(JobConf conf) throws IOException {
+    	    FileSystem fs = FileSystem.get(conf);
+    	    Path hdfsPath = new Path(HDFS_STOPWORD_LIST);
+
+    	    // upload the file to hdfs. Overwrite any existing copy.
+    	    fs.copyFromLocalFile(false, true, new Path(LOCAL_STOPWORD_LIST),
+    	        hdfsPath);
+
+    	    DistributedCache.addCacheFile(hdfsPath.toUri(), conf);
+    	  }
+    	  */
+//    }
+
+}
