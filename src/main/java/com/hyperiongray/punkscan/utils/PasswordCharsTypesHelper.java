@@ -91,7 +91,6 @@ public class PasswordCharsTypesHelper {
 		String code = PasswordCharsTypesHelper.getCode(passwordCharsTypeOptions);
 		BigDecimal maxCombinations = PasswordCharsTypesHelper.getMaxCombinations(passwordCharsTypeOptions, 8, 14);
 		
-//		PasswordCharsTypesHelper.getPasswordCharsTypeOptionsByCharsTypeOptionCode("0001");
 		String charsByCharsTypeOptionCode = PasswordCharsTypesHelper.getCharsByCharsTypeOptionCode("1111");
 
 		System.out.println(code);

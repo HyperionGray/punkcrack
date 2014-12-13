@@ -43,7 +43,6 @@ public class MRexampleSkeleton extends Configured implements Tool {
 		job.setInputFormatClass(RangeInputFormat.class);
 
 		job.setMapperClass(Map.class);
-		// conf.setCombinerClass(Reduce.class);
 		job.setReducerClass(Reduce.class);
 
 		job.setOutputKeyClass(Text.class);
@@ -52,9 +51,6 @@ public class MRexampleSkeleton extends Configured implements Tool {
 
 		int i = 0;
 		String sessionId = args[i++];
-//		FileInputFormat.setInputPaths(conf, new Path(args[i++]));
-//		FileOutputFormat.setOutputPath(conf, new Path(args[i++]));
-//		
 		i++;
 		i++;
 		String charsetCode = args[i++];
@@ -64,11 +60,6 @@ public class MRexampleSkeleton extends Configured implements Tool {
 		String hashingAlgorithm = args[i++];
 		String hashingSalt = args[i++];
 		String hashes = args[i++];
-
-		// BigDecimal totalCombinations = new
-		// BigDecimal(Math.pow(charset.length(), passwordLengthMax));
-		// BigDecimal totalCombinationsExcluded = new
-		// BigDecimal(Math.pow(charset.length(), passwordLengthMin));
 
 		conf.set("punkcracker.sessionId", sessionId);
 		conf.set("punkcracker.charsetrange.code", charsetCode);

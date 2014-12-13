@@ -18,9 +18,8 @@ public abstract class AbstractCharsetIterator {
 		this.charset = charset;
 		this.passwordLength = passwordLength;
 
-		// load the arrays of the valid charsequences
+		// loads the arrays of the valid charsequences
 		parentCharSet = new char[passwordLength][];
-		// parentCharSet[0] = new char[] { '0', '1' };
 		for (int i = 0; i < passwordLength; i++) {
 			parentCharSet[i] = charset;
 		}
@@ -40,7 +39,6 @@ public abstract class AbstractCharsetIterator {
 	}
 
 	public boolean hasNext() {
-		// return metaPositions[0] == 0 && !endReached ;
 		return !endConsumed;
 	}
 
@@ -74,22 +72,11 @@ public abstract class AbstractCharsetIterator {
 
 	private void moveBigStep() {
 		int dimension;
-		// if (passwordLength < 4) {
-		// dimension = passwordLength - 1;
-		// } else
-//		if (passwordLength < 6) {
-//			dimension = passwordLength - 5;
-//		} 
-//		else {
-//			dimension = passwordLength - 6;
-//		}
 		dimension = passwordLength - 6;
 		moveNext(dimension);
 	}
 
 	private void moveNext() {
-		// int dimension = passwordLength-1;
-		// moveNext(dimension);
 		moveNext(passwordLength - 1);
 	}
 
@@ -99,7 +86,6 @@ public abstract class AbstractCharsetIterator {
 			return;
 		}
 
-		// for (int i = passwordLength-1; i >= 0; i--) {
 		for (int i = dimension; i >= 0; i--) {
 			if (metaPositions[i] < parentCharSet[i].length - 1) {
 				metaPositions[i] = metaPositions[i] + 1; // move one
@@ -130,7 +116,6 @@ public abstract class AbstractCharsetIterator {
 	}
 
 	public void setMetapositionsToLast() {
-		// int[] metaPositions = new int[passwordLength];
 		for (int i = 0; i < passwordLength; i++) {
 			metaPositions[i] = parentCharSet[i].length - 1;
 		}
@@ -141,7 +126,6 @@ public abstract class AbstractCharsetIterator {
 		for (int i = 0; i <= metaPositions.length - 1; i++) {
 			output[i] = parentCharSet[i][metaPositions[i]];
 		}
-		// return new String(output);
 		return output;
 	}
 

@@ -9,9 +9,7 @@ import org.apache.hadoop.io.WritableUtils;
 import org.apache.hadoop.mapreduce.InputSplit;
 
 public class RangeInputSplit extends InputSplit implements Writable {
-//	private Text key; 
-//	private Text value;
-	
+
 	public String keyC;
 	public String valueC;
 

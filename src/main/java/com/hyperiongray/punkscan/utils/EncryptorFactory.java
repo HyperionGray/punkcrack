@@ -27,33 +27,13 @@ public class EncryptorFactory {
 		Encryptor encryptorWrapper = new Encryptor();
 
 		try {
-			// if (encryptorCode.toUpperCase().equals("MD5")) {
-			// md = MessageDigest.getInstance("MD5");
-			// }
 			md = MessageDigest.getInstance(encryptorCode.toUpperCase());
 
 		} catch (NoSuchAlgorithmException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			throw new RuntimeException("NoSuchAlgorithm!");
 		}
 		encryptorWrapper.setMessageDigest(md);
 		return encryptorWrapper;
 	}
-
-	// public byte[] encodeMD5(byte[] input) {
-	// try {
-	// md = MessageDigest.getInstance("MD5");
-	// } catch (NoSuchAlgorithmException e) {
-	// // TODO Auto-generated catch block
-	// e.printStackTrace();
-	// }
-	// return md.digest(input);
-	// }
-
-	// private void loadEncryptorMap(){
-	//
-	//
-	//
-	// }
 }

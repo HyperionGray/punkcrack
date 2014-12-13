@@ -13,10 +13,7 @@ import com.hyperiongray.punkscan.utils.HexConverter;
 import com.hyperiongray.punkscan.utils.PasswordCharsTypesHelper;
 
 public class RangeRecordReader extends RecordReader<Text, Text> {
-//	private int counter = 0;
-//	private String keyC;
-//	private String valueC;
-	// LongWritable key = null;
+
 	private Text key = new Text();
 	private Text value = new Text();
 	private CharsetIterator charsetIterator;
@@ -31,7 +28,6 @@ public class RangeRecordReader extends RecordReader<Text, Text> {
 		String valueC = ((RangeInputSplit) split).valueC;
 
 		String passwordGuessFirst = keyC;
-//		String passwordGuessLast = valueC;
 		passwordGuessLast=valueC.toCharArray();
 		
 		String hashHex= context.getConfiguration().get("punkcracker.password.hashes");
@@ -45,7 +41,6 @@ public class RangeRecordReader extends RecordReader<Text, Text> {
 		
 		charsetIterator = new CharsetIterator(charset, passwordGuessFirst.length(),passwordGuessFirst);
 
-//		System.out.println("key:" + keyC + " value:" + valueC);
 		System.out.println("starting with batch "+  passwordGuessFirst);
 	}
 
@@ -63,6 +58,7 @@ public class RangeRecordReader extends RecordReader<Text, Text> {
 
 	public float getProgress() throws IOException {
 		// return finishedRows / (float) totalRows;
+		// TODO
 		return 0.1234f;
 	}
 

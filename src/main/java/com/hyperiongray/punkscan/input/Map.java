@@ -14,8 +14,6 @@ import com.hyperiongray.punkscan.utils.HexConverter;
 
 public class Map extends Mapper<Text, Text, Text, Text> {
 
-	// private final static LongWritable one = new LongWritable(1);
-
 	private Text word = new Text();
 	private Text out = new Text();
 	private boolean isFinished;

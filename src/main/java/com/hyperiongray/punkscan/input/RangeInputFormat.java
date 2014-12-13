@@ -44,7 +44,6 @@ public class RangeInputFormat extends InputFormat<Text, Text> {
 			while (charsetFetcher.hasNext()) {
 				char[] currentChars = charsetFetcher.nextBigStep();
 				splits.add(currentChars);
-//				System.out.println(currentChars);
 			}
 		}
 		return splits;

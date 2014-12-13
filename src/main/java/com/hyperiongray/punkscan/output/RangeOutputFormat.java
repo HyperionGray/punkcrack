@@ -74,33 +74,4 @@ public class RangeOutputFormat<K, V> extends TextOutputFormat<K, V> {
 		return file;
 	}
 
-
-//    private void outputCommiterToNewFile(){
-    	
-    	
-    	
-    	/*
-    	
-    	
-    	1) Define a folder file name --> passsword
-    	2) Save to it when pwd gets matched
-    	3) ask for it when the input split starts, if pwd exists, then skip them
-    	
-    	4) in multihash escenario, keep generatiog the im 
-    	
-    	public static final String HDFS_STOPWORD_LIST = "/data/stop_words.txt";
-
-    	  void cacheStopWordList(JobConf conf) throws IOException {
-    	    FileSystem fs = FileSystem.get(conf);
-    	    Path hdfsPath = new Path(HDFS_STOPWORD_LIST);
-
-    	    // upload the file to hdfs. Overwrite any existing copy.
-    	    fs.copyFromLocalFile(false, true, new Path(LOCAL_STOPWORD_LIST),
-    	        hdfsPath);
-
-    	    DistributedCache.addCacheFile(hdfsPath.toUri(), conf);
-    	  }
-    	  */
-//    }
-
 }

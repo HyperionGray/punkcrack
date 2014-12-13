@@ -22,7 +22,6 @@ public class MRexample extends Configured implements Tool {
 	@Override
 	public int run(String[] args) throws Exception {
 
-		// String sessionId = args[0];
 		String output = args[0];// dir + "/output";
 		String charsetCode = args[1];
 		Integer passwordLengthMin = Integer.parseInt(args[2]);
@@ -96,20 +95,6 @@ public class MRexample extends Configured implements Tool {
 
 	public static void main(String[] args) throws Exception {
 
-		// * ***** Convert Hex to ASCII *****
-		// Hex : 70617373776f7264313233
-		// Decimal : 11297115115119111114100495051
-		// ASCII : password123
-
-		// defaults
-		// String
-		// basedir="/home/tomas/Proyecto/PunkCrack/workspace/punkscan/hadoop/";
-		// String charsetcode="1000";
-		// String minPasswordLenght="8";
-		// String maxPasswordLenght="8";
-		// String encryptiontype="md5";
-		// String salt ="";
-		// String hash ="5F4DCC3B5AA765D61D8327DEB882CF99";
 		String basedir = "";
 		String charsetcode = "";
 		String minPasswordLenght = "";
@@ -164,22 +149,7 @@ public class MRexample extends Configured implements Tool {
 		String output = basedir + "output_" + timeInMillis;
 		args = new String[] { output, charsetcode, minPasswordLenght, maxPasswordLenght, encryptiontype, salt, hash };
 
-		// if (args.length < 11) {
-		// // String input = dir + "hadoop/input";
-		//
-		// args = new String[] { basedir, "1000", "8", "8", "10000000", "md5",
-		// "salt", "5F4DCC3B5AA765D61D8327DEB882CF99", "hash2",
-		// "hash3" };
-		// }
-
-//		FileUtils.deleteDirectory(new File(output));
-		
-//		FileUtil.fullyDelete(new File(output));
 		Configuration conf = new Configuration();
-		// conf.set("bla","bar");
-		// String[] otherArgs = new GenericOptionsParser(conf,
-		// args).getRemainingArgs();
-		// int res = ToolRunner.run(new MRexample(), otherArgs);
 		int res = ToolRunner.run(new MRexample(), args);
 		System.exit(res);
 	}
