@@ -7,8 +7,8 @@ any additional questions or want to know more, please feel free to visit our web
 
 **Assumptions:**
 
-    - You're running this on the master node of a Hadoop cluster
-    - You have a password hash that you want to crack
+- You're running this on the master node of a Hadoop cluster
+- You have a password hash that you want to crack
     
 **Usage:** 
 
@@ -59,4 +59,4 @@ The PunkCRACK Team/Hyperion Gray
 
 ---
 
-[![define hyperion gray](https://hyperiongray.s3.amazonaws.com/define-hg.svg)](https://hyperiongray.com/?pk_campaign=github&pk_kwd=corporate-website "Hyperion Gray")
+[![define hyperion gray](https://hyperiongray.s3.amazonaws.com/define-hg.svg)](https://hyperiongray.com/?pk_campaign=github&pk_kwd=punkcrack "Hyperion Gray")
