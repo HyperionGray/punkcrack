@@ -33,12 +33,12 @@ Once you run this command you will see a Hadoop job start and the hash will begi
 
 encryptiontype is simply the hash type that you'd like to crack. This can be any one of the following values:
 
-    -md2
-    -md5
-    -sha-1
-    -sha-256
-    -sha-384
-    -sha-512
+-md2
+-md5
+-sha-1
+-sha-256
+-sha-384
+-sha-512
 
 We are continuing to add more support for hash types. Most notably, NTLM support is currently underway.
 
